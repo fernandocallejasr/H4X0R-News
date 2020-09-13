@@ -14,20 +14,23 @@ struct ContentView: View {
     
     var body: some View {
         
-        NavigationView {
-            List(networkManager.posts, rowContent: { post in
-                NavigationLink(destination: DetailView(url: post.url)) {
-                    
-                    NewsCell(title: post.title, id: post.points)
-                    
+        ZStack {
+            
+            //Color(red: 0.84, green: 0.68, blue: 0.62).edgesIgnoringSafeArea(.all)
+            
+            NavigationView {
+                List(networkManager.posts, rowContent: { post in
+                    NavigationLink(destination: DetailView(url: post.url)) {
+                        NewsCell(title: post.title, id: post.points)
+                    }
+                    })
+                    .navigationBarTitle("H4CK0R News")
                 }
-            })
-                .navigationBarTitle("H4CK0R News")
-            }
             .onAppear {
                 self.networkManager.fetchData()
+            }
+            
         }
-        
     }
 }
 
@@ -36,11 +39,3 @@ struct ContentView_Previews: PreviewProvider {
         ContentView().previewDevice(PreviewDevice(rawValue: "iPhone Xs"))
     }
 }
-
-/*
-let postsArray = [
-    Post(id: "1", title: "Apple kicks Fornite"),
-    Post(id: "2", title: "Fornite makes parody of '1984'"),
-    Post(id: "3", title: "Google kicks Fornite")
-]
-*/

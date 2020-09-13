@@ -14,18 +14,27 @@ struct NewsCell: View {
     let id: Int
     
     var body: some View {
-        HStack {
-            Circle()
-                .aspectRatio(1, contentMode: .fit)
-                .frame(width: 40)
-                .foregroundColor(.init(red: 1.00, green: 0.43, blue: 0.41))
-                .overlay(Text("\(id)"))
-            Capsule()
-                .frame(width: 300, height: 40)
-                .foregroundColor(.init(red: 1.00, green: 0.43, blue: 0.41))
-                .overlay(Text(title).lineLimit(5))
+        
+        ZStack {
+                        
+            HStack {
+                Circle()
+                    .aspectRatio(1, contentMode: .fit)
+                    .frame(width: 40)
+                    .foregroundColor(.init(red: 0.97, green: 0.91, blue: 0.89))
+                    .overlay(Text("\(id)")
+                        .foregroundColor(Color.black))
+                Capsule()
+                    .frame(width: 300, height: 85.0)
+                    .foregroundColor(.init(red: 0.97, green: 0.91, blue: 0.89))
+                    .overlay(Text(title).foregroundColor(Color.black).multilineTextAlignment(.center).lineLimit(5).padding(.horizontal))
+                    .cornerRadius(25.0)
+                
             }
-        .lineLimit(5)
+            .lineLimit(5)
+            
+        }
+        
     }
 }
 
